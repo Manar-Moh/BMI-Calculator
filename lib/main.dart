@@ -1,34 +1,44 @@
 import 'package:flutter/material.dart';
 
+import 'InputPage.dart';
+import 'package:splashscreen/splashscreen.dart';
+
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: InputPage(),
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.pink[900],
+        scaffoldBackgroundColor: Color(0xFF0A0E21),
+      ),
+      home: Splash(),
     );
   }
 }
 
-class InputPage extends StatefulWidget {
+class Splash extends StatefulWidget {
   @override
-  _InputPageState createState() => _InputPageState();
+  _SplashState createState() => _SplashState();
 }
 
-class _InputPageState extends State<InputPage> {
+class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+    return SplashScreen(
+      seconds: 15,
+      navigateAfterSeconds: new InputPage(),
+      title: new Text(
+        'BMI-Calculator',
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0),
       ),
-      body: Center(
-        child: Text('Body Text'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-      ),
+      backgroundColor: Color(0xFF1D1E33),
+      image: Image.asset('images/im.png'),
+      photoSize: 80.0,
+      styleTextUnderTheLoader: new TextStyle(),
+      loadingText: Text('Loading'),
+      loaderColor: Color(0xFF880E4F),
     );
   }
 }
